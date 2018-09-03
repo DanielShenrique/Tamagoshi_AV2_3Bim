@@ -15,6 +15,10 @@ namespace Tamagoshi
 
             SetContentView(Resource.Layout.Main);
 
+            RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
+
+            SetContentView(new HomeScreen(this));
+
         }
     }
 }
