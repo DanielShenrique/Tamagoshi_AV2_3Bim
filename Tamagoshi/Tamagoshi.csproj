@@ -57,8 +57,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackGame.cs" />
-    <Compile Include="HomeScreen.cs" />
+    <Compile Include="GameActivity.cs" />
+    <Compile Include="GameView.cs" />
+    <Compile Include="HomeScreenView.cs" />
+    <Compile Include="JamvPlayer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

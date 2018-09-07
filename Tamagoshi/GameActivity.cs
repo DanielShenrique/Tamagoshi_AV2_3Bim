@@ -1,13 +1,12 @@
-﻿using Android.App;
-using Android.Widget;
-using Android.OS;
+﻿
+using Android.App;
 using Android.Content;
-using Android.Util;
+using Android.OS;
+using Android.Widget;
 
 namespace Tamagoshi
 {
-    [Activity(Label = "Tamagoshi", MainLauncher = true)]
-    public class MainActivity : Activity
+	class GameActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -15,9 +14,8 @@ namespace Tamagoshi
 
             RequestedOrientation = Android.Content.PM.ScreenOrientation.Portrait;
 
-            SetContentView(new HomeScreenView(this));
-
+			SetContentView(new GameView(this));
         }
+
     }
 }
-
