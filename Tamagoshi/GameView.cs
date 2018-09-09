@@ -13,6 +13,10 @@ namespace Tamagoshi
 
 		private Paint color;
 
+		private static bool isDead;
+
+		private JamvPlayer jamvPlayer;
+
 		public GameView(Context context) : base(context)
 		{
 			Initialize(context);
@@ -38,11 +42,18 @@ namespace Tamagoshi
 
 			color = new Paint();
 			color.SetARGB(255,255,255,255);
+
+			jamvPlayer = new JamvPlayer(BitmapFactory.DecodeResource(Resources, Resource.Drawable.Imagem_Happy), context);
 		}
 
 		protected override void OnDraw(Canvas canvas)
 		{
 			base.OnDraw(canvas);
+			if (!isDead)
+			{
+				jamvPlayer.DrawnImage(canvas);
+			}
+
 		}
 
 		private void Update()

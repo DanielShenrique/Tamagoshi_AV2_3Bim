@@ -17,14 +17,28 @@ namespace Tamagoshi
 	{
 		Context context;
 
-		private Bitmap[] jamvStatus;
+		private Bitmap jamvStatus;
 
+		private Paint color;
 
-		public JamvPlayer(Bitmap[] images, Context c)
+		private float width, height;
+
+		public JamvPlayer(Bitmap images, Context c)
 		{
 			context = c;
 
+			width = 5f;
+			height = 5f;
+
 			jamvStatus = images;
+
+			color = new Paint();
+			color.SetARGB(255, 255, 255, 255);
+		}
+
+		public void DrawnImage(Canvas canvas)
+		{
+			canvas.DrawBitmap(jamvStatus, width, height, color);
 		}
 	}
 }
