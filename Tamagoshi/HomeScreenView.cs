@@ -12,6 +12,8 @@ namespace Tamagoshi
         private Bitmap image;
         private Paint color;
 
+        private float x, y;
+
         public HomeScreenView(Context context) : base(context)
         {
             Initiate(context);
@@ -33,6 +35,9 @@ namespace Tamagoshi
 
             image = BitmapFactory.DecodeResource(Resources, Resource.Drawable.TelaDeInicio);
 
+            x = 0;
+            y = 0;
+
             color = new Paint();
             color.Color = Color.White;
         }
@@ -40,18 +45,16 @@ namespace Tamagoshi
         protected override void OnDraw(Canvas canvas)
         {
             base.OnDraw(canvas);
-            canvas.DrawBitmap(image, 0, 0, color);
+            canvas.DrawBitmap(image, x, y, color);
         }
 
         public override bool OnTouchEvent(MotionEvent e)
         {
-
             if(e.Action == MotionEventActions.Up)
             {
                 Intent i = new Intent(context, typeof(GameActivity));
                 context.StartActivity(i);
             }
-
             return true;
         }
     }

@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
+﻿using Android.Content;
 using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace Tamagoshi
 {
-	class JamvPlayer
+    class JamvPlayer
 	{
 		Context context;
 
@@ -21,14 +11,14 @@ namespace Tamagoshi
 
 		private Paint color;
 
-		private float width, height;
+		private float x, y;
 
 		public JamvPlayer(Bitmap images, Context c)
 		{
 			context = c;
 
-			width = 5f;
-			height = 5f;
+            x = 0f;
+            y = 0f;
 
 			jamvStatus = images;
 
@@ -38,7 +28,7 @@ namespace Tamagoshi
 
 		public void DrawnImage(Canvas canvas)
 		{
-			canvas.DrawBitmap(jamvStatus, width, height, color);
+			canvas.DrawBitmap(jamvStatus, x, y, color);
 		}
 	}
 }

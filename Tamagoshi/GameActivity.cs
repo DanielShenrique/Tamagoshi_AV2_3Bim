@@ -1,12 +1,11 @@
 ﻿
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Widget;
 
 namespace Tamagoshi
 {
-	class GameActivity : Activity
+    [Activity(Label = "Tamagoshi")]
+    public class GameActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
