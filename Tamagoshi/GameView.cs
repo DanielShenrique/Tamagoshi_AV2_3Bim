@@ -63,6 +63,7 @@ namespace Tamagoshi
 		{
             if (!isDead)
             {
+                ///Fazer conforme o temo do service
                 water.numWater--;
                 food.numFood--;
             }
