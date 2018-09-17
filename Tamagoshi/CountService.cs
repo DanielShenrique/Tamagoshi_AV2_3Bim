@@ -6,8 +6,8 @@ using Java.Lang;
 
 namespace Tamagoshi
 {
-    [Service(Name = ".com.Tamagoshi.CountService")]
-    class CountService : Service, IRunnable
+    [Service(Name = "com.Tamagoshi.CountService")]
+    class CountService : Service, IRunnable, Count
     {
         protected int foodCount;
         protected int waterCount;
@@ -81,6 +81,11 @@ namespace Tamagoshi
 
                 StopSelf();
             }
+        }
+
+        public void SetWateR(int value)
+        {
+            waterCount = value;
         }
     }
 }

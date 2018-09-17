@@ -20,5 +20,5 @@ namespace Tamagoshi
         }
 
         public CountService Service { get; private set; }
-    }
+    }    
 }

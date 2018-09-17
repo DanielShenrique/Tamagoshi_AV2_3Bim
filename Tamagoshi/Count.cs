@@ -16,5 +16,6 @@ namespace Tamagoshi
     {
         int Water();
         int Food();
+        void SetWateR(int value);
     }
 }

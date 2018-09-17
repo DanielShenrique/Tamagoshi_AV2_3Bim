@@ -16,8 +16,9 @@ namespace Tamagoshi
         private bool isConnected;
 
 		Context context;
+        Intent i;
 
-		private Paint color;
+        private Paint color;
 
 		public static bool isDead;
 
@@ -46,7 +47,11 @@ namespace Tamagoshi
             isConnected = false;
             binder = null;
 
-            //BindService(new Intent(context, typeof(CountService)), this, Bind.AutoCreate);
+          i = new Intent(context, typeof(CountService));
+
+            context.StartService(i);
+
+            context.BindService(i, this, Bind.AutoCreate);
             Toast.MakeText(context, "Bind Service", ToastLength.Short).Show();
 
             SetBackgroundColor(Color.White);
@@ -60,6 +65,9 @@ namespace Tamagoshi
 		protected override void OnDraw(Canvas canvas)
 		{
 			base.OnDraw(canvas);
+            //count.Water();
+            //count.Food();
+
 			if (!isDead)
 			{
 				jamvPlayer.DrawnImage(canvas);
@@ -72,6 +80,10 @@ namespace Tamagoshi
             if (!isDead)
             {
                 //jamvPlayer.jamvStatus
+                if(count.Food() <= 50 && count.Water() <= 50)
+                {
+                    //jamvPlayer.jamvStatus
+                }
             }
 		}
 
@@ -105,7 +117,7 @@ namespace Tamagoshi
 
             if (isConnected)
             {
-                //count = binder.Service;
+                count = (Count)binder.Service;
                 Toast.MakeText(this.context, "Service Connected", ToastLength.Short).Show();
             }
             else
