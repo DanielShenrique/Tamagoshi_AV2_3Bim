@@ -12,17 +12,9 @@ using Android.Widget;
 
 namespace Tamagoshi
 {
-    class Food
+    interface Count
     {
-        Context context;
-
-        public int numFood;
-
-        public Food(Context c)
-        {
-            context = c;
-
-            numFood = 100;
-        }
+        int Water();
+        int Food();
     }
 }

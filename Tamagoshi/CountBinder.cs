@@ -12,17 +12,13 @@ using Android.Widget;
 
 namespace Tamagoshi
 {
-    class Water
+    class CountBinder : Binder
     {
-        Context context;
-
-        public int numWater;
-
-        public Water(Context c)
+        public CountBinder(CountService service)
         {
-            context = c;
-
-            numWater = 100;
+            this.Service = service;
         }
+
+        public CountService Service { get; private set; }
     }
 }

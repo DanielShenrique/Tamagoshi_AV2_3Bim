@@ -7,7 +7,7 @@ namespace Tamagoshi
 	{
 		Context context;
 
-		private Bitmap jamvStatus;
+		public Bitmap jamvStatus;
 
 		private Paint color;
 
