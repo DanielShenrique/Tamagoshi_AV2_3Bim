@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Util;
 using Java.Lang;
 
 namespace Tamagoshi
@@ -77,8 +78,6 @@ namespace Tamagoshi
             {
                 waterCount--;
                 foodCount--;
-
-                //começar usar a notificação
 
                 h.PostDelayed(this, 1000);
             }

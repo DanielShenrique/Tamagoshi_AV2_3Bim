@@ -17,8 +17,8 @@ namespace Tamagoshi
 		{
 			context = c;
 
-            x = 0f;
-            y = 0f;
+            x = 200f;
+            y = 40f;
 
 			jamvStatus = images;
 

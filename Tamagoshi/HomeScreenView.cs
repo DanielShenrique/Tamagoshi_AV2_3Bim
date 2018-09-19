@@ -35,8 +35,8 @@ namespace Tamagoshi
 
             image = BitmapFactory.DecodeResource(Resources, Resource.Drawable.TelaDeInicio);
 
-            x = 0;
-            y = 0;
+            x = 150;
+            y = 300;
 
             color = new Paint();
             color.Color = Color.White;
