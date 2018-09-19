@@ -47,7 +47,7 @@ namespace Tamagoshi
             isConnected = false;
             binder = null;
 
-          i = new Intent(context, typeof(CountService));
+            i = new Intent(context, typeof(CountService));
 
             context.StartService(i);
 
