@@ -61,6 +61,14 @@ namespace Tamagoshi
         {
             return foodCount;
         }
+        public void SetWateR(int value)
+        {
+            waterCount = value;
+        }
+        public void SetFooD(int value)
+        {
+            foodCount = value;
+        }
         #endregion
 
         public void Run()
@@ -81,11 +89,6 @@ namespace Tamagoshi
 
                 StopSelf();
             }
-        }
-
-        public void SetWateR(int value)
-        {
-            waterCount = value;
         }
     }
 }

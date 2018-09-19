@@ -82,7 +82,7 @@ namespace Tamagoshi
                 //jamvPlayer.jamvStatus
                 if(count.Food() <= 50 && count.Water() <= 50)
                 {
-                    //jamvPlayer.jamvStatus
+                    jamvPlayer.jamvStatus = BitmapFactory.DecodeResource(Resources, Resource.Drawable.Imagem_Happy);
                 }
             }
 		}
@@ -91,6 +91,7 @@ namespace Tamagoshi
         public void Run()
         {
             Update();
+
         }
 
         private void UnbindConnection()
