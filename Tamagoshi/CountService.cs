@@ -10,7 +10,7 @@ namespace Tamagoshi
     [Service(Name = "com.Tamagoshi.CountService")]
     class CountService : Service, IRunnable, Count
     {
-        protected int foodCount;
+        public int foodCount;
         protected int waterCount;
 
         private bool active;
@@ -64,11 +64,23 @@ namespace Tamagoshi
         }
         public void SetWateR(int value)
         {
-            waterCount = value;
+            if (waterCount + value < 100)
+                waterCount += value;
+
+            else
+                waterCount = 100;
         }
         public void SetFooD(int value)
         {
-            foodCount = value;
+            if (foodCount + value < 100)
+                foodCount += value;
+
+            else
+                foodCount = 100;
+            if(foodCount + value > 0)
+            {
+                foodCount = 0;
+            }
         }
         #endregion
 

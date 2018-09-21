@@ -23,12 +23,14 @@ namespace Tamagoshi
         private Paint color;
         public bool Cliquei;
 
-        private float x, y;
+        public float x, y, w, h;
 
-        public Boton(Bitmap images, Context c, int newX, int newY)
+        public Boton(Bitmap images, Context c, int newX, int newY, int newW, int newH)
         {
             context = c;
 
+            h = newH;
+            w = newW;
             x = newX;
             y = newY;
 
@@ -37,24 +39,10 @@ namespace Tamagoshi
             color = new Paint();
             color.SetARGB(255, 255, 255, 255);
         }
-
         public void DrawnImage(Canvas canvas)
         {
             canvas.DrawBitmap(Botao, x, y, color);            
         }
-
-        public bool DetectTouch(MotionEvent e)
-        {
-            if (e.RawX > x && e.RawY > y)
-            {
-                Log.Debug("Show", "DETECTEIIIIIIIIII");
-                return true;
-            }
-            else return false;
-
-        }
-
-
         public void Update()
         {
             

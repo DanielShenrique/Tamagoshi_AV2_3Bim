@@ -54,10 +54,13 @@ namespace Tamagoshi
 			public const int Imagem_MeioAMeio = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int Steak = 2130837507;
+			public const int KO = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int TelaDeInicio = 2130837508;
+			public const int Steak = 2130837508;
+			
+			// aapt resource value: 0x7f020005
+			public const int TelaDeInicio = 2130837509;
 			
 			static Drawable()
 			{

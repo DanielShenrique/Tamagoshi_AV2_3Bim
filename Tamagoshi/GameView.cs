@@ -13,6 +13,7 @@ namespace Tamagoshi
 
         private CountBinder binder;
         private Count count;
+        CountService FoodCount;
         private bool isConnected;
 
         Handler handler;
@@ -27,6 +28,8 @@ namespace Tamagoshi
         public static bool isDead;
 
 		private JamvPlayer jamvPlayer;
+        JamvPlayer jamvPlayerHalfandHalf;
+        JamvPlayer JanvMorreu;
         private Boton BotaoComida;
         private Boton BotaoAgua;
 
@@ -54,6 +57,7 @@ namespace Tamagoshi
             binder = null;
 
             i = new Intent(context, typeof(CountService));
+            isDead = false;
 
             context.StartService(i);
 
@@ -69,9 +73,12 @@ namespace Tamagoshi
             textPaint.SetARGB(50, 50, 50, 50);
 
             jamvPlayer = new JamvPlayer(BitmapFactory.DecodeResource(Resources, Resource.Drawable.Imagem_Happy), context);
-            BotaoComida = new Boton(BitmapFactory.DecodeResource(Resources, Resource.Drawable.Steak), context, 50, 500);
-            BotaoAgua = new Boton(BitmapFactory.DecodeResource(Resources, Resource.Drawable.Agua), context, 300, 439);
+            jamvPlayerHalfandHalf = new JamvPlayer(BitmapFactory.DecodeResource(Resources, Resource.Drawable.Imagem_MeioAMeio), context);
+            JanvMorreu = new JamvPlayer(BitmapFactory.DecodeResource(Resources, Resource.Drawable.KO), context);
+            BotaoComida = new Boton(BitmapFactory.DecodeResource(Resources, Resource.Drawable.Steak), context, 50, 500, 200,200);
+            BotaoAgua = new Boton(BitmapFactory.DecodeResource(Resources, Resource.Drawable.Agua), context, 300, 439,300,300);
             handler = new Handler();
+            FoodCount = new CountService();
             handler.Post(this);
         }
 
@@ -82,41 +89,82 @@ namespace Tamagoshi
             BotaoAgua.DrawnImage(canvas);
             canvas.DrawText(count.Food().ToString(), 50, 900, textPaint);
             canvas.DrawText(count.Water().ToString(), 400, 900, textPaint);
-            //count.Water();
-            //count.Food();
-
             if (!isDead)
-			{
-				jamvPlayer.DrawnImage(canvas);
-			}
+            {
+                //jamvPlayer.jamvStatus
+                if (count != null)
+                {
+                    if (count.Food() >50 && count.Water() > 50)
+                    {
+                        jamvPlayer.DrawnImage(canvas);
+                    }
+                    if (count.Food() < 50 && count.Water() < 50)
+                    {
+                        jamvPlayerHalfandHalf.DrawnImage(canvas);
+                    }
+                }
+            }
+            if (count.Food() < 0 && count.Water() < 0)
+            {
+                isDead = true;
+                JanvMorreu.DrawnImage(canvas);
+            }
 
 		}
         public override bool OnTouchEvent(MotionEvent e)
         {
-            if (e.Action == MotionEventActions.Down)
+            
+            if (e.Action == MotionEventActions.Up)
             {
-                if (BotaoComida.DetectTouch(e))
+               
+                if (DetectTouchFood(e.GetX(), e.GetY()))
                 {
+                    Log.Debug("UP", "TOKKKKKK");
                     count.SetFooD(5);
-                    Toast.MakeText(context, "No alimento", ToastLength.Short).Show();
+                    //Toast.MakeText(context, "No alimento", ToastLength.Short).Show();
+                }
+                if (DetectTouchWater(e.GetX(), e.GetY()))
+                {
+                    count.SetWateR(5);
+                    //Toast.MakeText(context, "No alimento", ToastLength.Short).Show();
                 }
             }
             return true;
         }
+        private bool DetectTouchFood(float x, float y)
+        {
+            
+            if (x > BotaoComida.x && x < BotaoComida.x + BotaoComida.w && y > BotaoComida.y && y < BotaoComida.y + BotaoComida.h)
+            {
+                Toast.MakeText(context, "No alimento", ToastLength.Short).Show();
+                return true;
+            }
+            else return false;
+
+        }
+        private bool DetectTouchWater(float x,float y)
+        {
+            if (x > BotaoAgua.x && x < BotaoAgua.x + BotaoAgua.w && y > BotaoAgua.y && y < BotaoAgua.y + BotaoAgua.h)
+            {
+                Toast.MakeText(context, "Na Agua", ToastLength.Short).Show();
+                return true;
+            }
+            else return false;
+        }
 
         private void Update()
 		{
-            if (!isDead)
+            /*if (!isDead)
             {
                 //jamvPlayer.jamvStatus
                 if (count != null)
                 {
                     if (count.Food() <= 50 && count.Water() <= 50)
                     {
-                        jamvPlayer.jamvStatus = BitmapFactory.DecodeResource(Resources, Resource.Drawable.Imagem_Happy);
+                        
                     }
                 }
-            }
+            }*/
 		}
 
 
