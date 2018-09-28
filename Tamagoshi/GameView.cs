@@ -152,27 +152,11 @@ namespace Tamagoshi
             else return false;
         }
 
-        private void Update()
-		{
-            /*if (!isDead)
-            {
-                //jamvPlayer.jamvStatus
-                if (count != null)
-                {
-                    if (count.Food() <= 50 && count.Water() <= 50)
-                    {
-                        
-                    }
-                }
-            }*/
-		}
-
 
         public void Run()
         {
                 handler.PostDelayed(this, 30);
 
-                Update();
                 this.Invalidate();
         }
 

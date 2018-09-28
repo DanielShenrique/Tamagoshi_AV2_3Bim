@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Support.V4.App;
 using Android.Util;
 using Java.Lang;
 
@@ -14,6 +15,7 @@ namespace Tamagoshi
         protected int waterCount;
 
         private bool active;
+        private bool reciveMensage;
 
         private Handler h;
 
@@ -28,6 +30,7 @@ namespace Tamagoshi
             waterCount = 100;
 
             active = true;
+            reciveMensage = false;
 
             h = new Handler();
             h.Post(this);
@@ -84,12 +87,72 @@ namespace Tamagoshi
         }
         #endregion
 
+        void Notification(int resource)
+        {
+
+            Intent resultIntent = new Intent(this, typeof(MainActivity));
+
+            Android.Support.V4.App.TaskStackBuilder stackBuilder = Android.Support.V4.App.TaskStackBuilder.Create(this);
+            stackBuilder.AddParentStack(Java.Lang.Class.FromType(typeof(MainActivity)));
+            stackBuilder.AddNextIntent(resultIntent);
+
+            PendingIntent resultPendingIntent = stackBuilder.GetPendingIntent(0, (int)PendingIntentFlags.UpdateCurrent);
+            string myTitle, myContent;
+
+            if(resource == 0)
+            {
+                myTitle = "Need Water";
+                myContent = "JKASDFIDOAJISODJIOAJISODJIOASJIODJBJABI  OIAH QIOS";
+            }
+            else if(resource == 1)
+            {
+                myTitle = "Need food";
+                myContent = "JKASDFIDOAJISODJIOAJISODJIOASJIODJBJABI  OIAH QIOS";
+            }
+            else
+            {
+                myTitle = "Morreu";
+                myContent = "JKASDFIDOAJISODJIOAJISODJIOASJIODJBJABI  OIAH QIOS";
+            }
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+               .SetAutoCancel(true)
+               .SetDefaults((int)NotificationDefaults.Sound)
+               .SetContentIntent(resultPendingIntent)
+               .SetContentTitle(myTitle)
+               .SetContentText(myContent);
+
+            NotificationManager nf = (NotificationManager)this.GetSystemService(Context.NotificationService);
+            nf.Notify(1000, builder.Build());
+        }
+
         public void Run()
         {
             if (active)
             {
                 waterCount--;
                 foodCount--;
+
+                if (reciveMensage)
+                {
+                    if (waterCount <= 25)
+                    {
+                        Notification(0);
+                        reciveMensage = true;
+                    }
+
+                    if (foodCount <= 25)
+                    {
+                        Notification(1);
+                        reciveMensage = true;
+                    }
+
+                    if (waterCount == 0 || foodCount == 0)
+                    {
+                        Notification(2);
+                        reciveMensage = true;
+                    }
+                }
 
                 h.PostDelayed(this, 1000);
             }
