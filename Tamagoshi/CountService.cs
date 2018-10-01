@@ -69,7 +69,6 @@ namespace Tamagoshi
         {
             if (waterCount + value < 100)
                 waterCount += value;
-
             else
                 waterCount = 100;
         }
@@ -77,13 +76,8 @@ namespace Tamagoshi
         {
             if (foodCount + value < 100)
                 foodCount += value;
-
             else
                 foodCount = 100;
-            if(foodCount + value > 0)
-            {
-                foodCount = 0;
-            }
         }
         #endregion
 
@@ -102,17 +96,17 @@ namespace Tamagoshi
             if(resource == 0)
             {
                 myTitle = "Need Water";
-                myContent = "JKASDFIDOAJISODJIOAJISODJIOASJIODJBJABI  OIAH QIOS";
+                myContent = "Need Water";
             }
             else if(resource == 1)
             {
                 myTitle = "Need food";
-                myContent = "JKASDFIDOAJISODJIOAJISODJIOASJIODJBJABI  OIAH QIOS";
+                myContent = "Need Food";
             }
             else
             {
                 myTitle = "Morreu";
-                myContent = "JKASDFIDOAJISODJIOAJISODJIOASJIODJBJABI  OIAH QIOS";
+                myContent = "Morreu";
             }
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
@@ -133,7 +127,7 @@ namespace Tamagoshi
                 waterCount--;
                 foodCount--;
 
-                if (reciveMensage)
+                if (reciveMensage == false)
                 {
                     if (waterCount <= 25)
                     {
